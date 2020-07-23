@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col p-4 bg-light m-3">
+        <form action="/register" method="POST">
+            {% csrf_token %}
+            <h4>Registration - Not inherited</h4>
+            {% if messages %}
+                <ul class="alert-danger">
+                    {% for message in messages %}
+                    <li class="text-danger">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" name="firstName_form" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" name="lastName_form" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email Address</label>
+                <input type="text" class="form-control" name="email_form" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" name="pw_form" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPasswordConfirm">Password Confirm</label>
+                <input type="password" class="form-control" name="confPassword_form" placeholder="Password Confirm">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="col p-4 bg-light m-3">
+        <h4>Log In - Not inherited</h4>
+        {% if messages %}
+                <ul class="alert-danger">
+                    {% for message in messages %}
+                    <li class="text-danger">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        <form action="/login" method="POST">  
+            {% csrf_token %}                   
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email Address</label>
+                <input type="email" class="form-control" name="email_form" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" name="pw_form" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
+
+</body>
+</html>

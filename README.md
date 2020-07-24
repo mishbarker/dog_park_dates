@@ -1,7 +1,9 @@
 # dog_park_dates
 Group Project: Irina, Lydia and Michelle
 
-Group Project - Lydia, Irina and Michelle
+Lydia: Group Project Proposal, HTML, Models, views.py (TBD), Google Maps API
+Irina: Wireframe Design, Log-in/Registration, Models, views.py (TBD) 
+Michelle: Coordinate collaboration (Zoom, Github, Liveshare), HTML support, Models, views.py (TBD)
 
 Dog Buddy - Dog Park Connections
 

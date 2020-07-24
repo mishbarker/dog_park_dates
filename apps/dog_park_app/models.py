@@ -1,5 +1,5 @@
 from django.db import models
-from login_reg.models import User
+from apps.login_reg_app.models import User
 from datetime import datetime
 from datetime import date
 import re

@@ -1,4 +1,4 @@
-# dog_park_dates
+# dog_park_pals
 Group Project: Irina, Lydia and Michelle
 
 Lydia: Group Project Proposal, HTML, Models, views.py (TBD), Google Maps API

@@ -32,7 +32,7 @@ def register(request):
         return redirect('/dashboard')
     else:
         return render(request, 'register.html')
-def logoff(request):
+def logout(request):
     request.session.flush()
     return redirect('/')
 

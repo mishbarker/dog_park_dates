@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Hello {{logged_user.first_name}}! Read about this playdate!</h1>
+            <a href="/dashboard">Dashboard</a>
+        </div>
+        <div class="wrapper container">
+            <h3>{{viewed_playdate.park_name}}</h3>
+            <p>Start Date: {{viewed_playdate.date|date:"SHORT_DATE_FORMAT"}}</p>
+            <p>Created On: {{viewed_playdate.created_at|date:"SHORT_DATE_FORMAT"}}</p>
+            <p>Last Updated: {{viewed_playdate.updated_at|date:"SHORT_DATE_FORMAT"}}</p>
+            <p>Plan: {{viewed_playdate.comment}}</p>
+            <p>Created by: {{viewed_trip.creator.first_name}}</p>
+        </div>
+    </div>
+
+{% endblock %}
+</body>
+</html>

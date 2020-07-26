@@ -1,0 +1,16 @@
+.container-fluid{
+    background-image: url('../images/dogsplaying.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.jumbotron-fluid{
+    background: linear-gradient(rgba(238, 232, 232, 0.5), rgba(238, 232, 232, 0.5));
+}
+
+.py-3{
+    margin: 0px;
+    max-width: 100%;
+}

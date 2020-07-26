@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Hello {{user.first_name}}!</h1>
+        <table class="table">
+            <h3 class="display-5">Your Playdates:</h3>
+            <tr>
+                <th scope="col">Park Name:</th>
+                <th scope="col">Address:</th>
+                <th scope="col">Date:</th>
+                <th scope="col">Time:</th>
+                <th scope="col">Actions:</th>
+            </tr>
+            {% for playdate in all_playdates %}
+                {% if request.session.user_id == playdate.creator.id %}
+                <tr>
+                    <td scope="col"><a href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
+                    <td scope="col">{{playdate.address}}</td>
+                    <td scope="col">{{playdate.date}}</td>
+                    <td scope="col">{{playdate.time}}</td>
+                {% if request.session.user_id == playdate.creator.id %}
+                    <td scope="col"><a href="/playdates/delete/{{playdate.id}}" class="btn btn-primary" role="button" aria-pressed="true">Remove</a></td>
+                    <td scope="col"><a href="/playdates/edit/{{playdate.id}}" class="btn btn-primary" role="button" aria-pressed="true">Edit</a></td>
+                {% endif %}
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        <a href="/playdates/new" class="btn btn-primary" role="button" aria-pressed="true">Create a new playdate!</a>
+    </div>
+
+{% endblock content %}
+</body>
+</html>

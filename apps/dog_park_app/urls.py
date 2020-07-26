@@ -8,4 +8,8 @@ urlpatterns = [
     path('playdates/delete/<int:id>', views.delete_playdate),
     path('playdates/<int:id>', views.show_one),
     path('playdates/edit/<int:id>', views.edit_playdate),
+
+    # path('submit_review/<int:id>', views.submit_review), #POST that redirects to /show_one_review/<int:id>
+    # path('delete_review/<int:id>', views.delete_review), #POST/GET redirects to same page /show_one/<int:id>
+    # path('user_profile/<int:id>', views.user_profile), #renders profile.html with redirects to /show_one/<int:id> OR HOME OR /new OR /logout
 ]

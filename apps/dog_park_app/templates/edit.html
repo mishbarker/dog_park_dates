@@ -18,24 +18,24 @@
             <form action='/playdates/edit/{{edit_playdate.id}}' method=POST>
                 <div class="form-group">
                 {% csrf_token %}
-                <label for="InputPark1">Park Name:</label>
-                <input type="text" class="form-control" id="InputPark1" name='park_name' aria-describedby="parkHelp" value='{{edit_playdate.park_name}}'>
+                    <label for="InputPark1">Park Name:</label>
+                    <input type="text" class="form-control" id="InputPark1" name='park_name' aria-describedby="parkHelp" value='{{edit_playdate.park_name}}'>
                 </div>
                 <div class="form-group">
-                <label for="Inputaddress">Address:</label>
-                <input type="address" class="form-control" id="InputAddress" name='address' value='{{edit_playdate.address}}'>
+                    <label for="Inputaddress">Address:</label>
+                    <input type="address" class="form-control" id="InputAddress" name='address' value='{{edit_playdate.address}}'>
                 </div>
                 <div class="form-group">
-                <label for="InputDate">Date:</label>
-                <input type="date" class="form-control" id="InputDate" name='date' value='{{edit_playdate.date}}'>
+                    <label for="InputDate">Date:</label>
+                    <input type="date" class="form-control" id="InputDate" name='date' value='{{edit_playdate.date}}'>
                 </div>
                 <div class="form-group">
-                <label for="InputTime">Time:</label>
-                <input type="time" class="form-control" id='InputTime' name='time' value='{{edit_playdate.time}}'>
+                    <label for="InputTime">Time:</label>
+                    <input type="time" class="form-control" id='InputTime' name='time' value='{{edit_playdate.time}}'>
                 </div>
                 <div class="form-group">
-                <label for="Inputcomment">Comment:</label>
-                <input type="text" class="form-control" id='InputComment' name='comments' value='{{edit_playdate.comments}}'>
+                    <label for="Inputcomment">Comment:</label>
+                    <input type="text" class="form-control" id='InputComment' name='comments' value='{{edit_playdate.comments}}'>
                 </div>
                 <button type="submit" class="btn btn-primary" >Submit</button>
                 <td scope="col"><a href="/dashboard" class="btn btn-primary" role="button" aria-pressed="true">Cancel</a></td>

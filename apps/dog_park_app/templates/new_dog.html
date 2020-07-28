@@ -15,7 +15,7 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <form action="/users/create_dog" method="POST">
+        <form action="/users/create_dog" method="POST" enctype="multipart/form-data">
             {%csrf_token%}
             {% if messages %}
             <ul class="messages text-danger">    
@@ -39,6 +39,9 @@
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
+            </div>
+            <div class="my-5">
+                <input type="file" name="image">
             </div>
             <div class="form-group row">
                 <div class="col-sm-7">

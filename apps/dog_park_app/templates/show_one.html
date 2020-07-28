@@ -12,16 +12,20 @@
             <p>Date: {{viewed_playdate.date|date:"SHORT_DATE_FORMAT"}}</p>
             <p>Comments: {{viewed_playdate.comments}}</p>
             <p>Created by: {{dog.name}} ({{dog.breed}}, {{dog.gender}})</p>
-            <p>Human Name:  {{viewed_playdate.creator.first_name}} {{viewed_playdate.creator.last_name}}</p>
+            <img class="shadow p-3 mb-5 bg-transparent rounded" src="{{dog.image.url}}" alt="dog_image">
+            <p>Human:  {{viewed_playdate.creator.first_name}} {{viewed_playdate.creator.last_name}}</p>
         </div>
         <div class="wrapper container">
             <h3>Pals who joined this playdate:</h3>
             {% if viewed_playdate.users_who_joined.count == 0 %}
                 <p>No one has joined this playdate yet.</p>
             {% endif %}
-            {% for user in viewed_playdate.users_who_joined.all %}
-                <p>Dog Name: {{user.has_dog.name}}</p>
-                <p>Human Name: {{user.first_name}} {{user.last_name}}</p><br>
+
+            {% for user in users_joined %}
+                {%for dog in user.has_dog.all%}            
+                    <p>{{dog.name}}: {{dog.breed}}, {{dog.gender}}</p>            
+                {%endfor%}
+                <p>Human: {{user.first_name}} {{user.last_name}}</p><br>
             {%endfor%}
         </div>
     </div>

@@ -1,12 +1,5 @@
 from django.urls import path
 from . import views
-  
-urlpatterns = [
-    path('', views.index), #GET renders index.html for landing page
-    path('dashboard', views.dashboard), #GET renders dashboard.html - HOME
-    path('playdates/new', views.new), #GET renders new.html to add a new playdate and POST to create a new playdate, may add a new park, in database, POST redirects back to dashboard.html
-    path('playdates/edit<int:id>', views.new), #GET renders edit.html and POST edits a playdate, may add new park and redirects to dashboard.html
-    path('playdates/show_one/<int:id>', views.show_one),
 
 urlpatterns = [
     path('', views.index),

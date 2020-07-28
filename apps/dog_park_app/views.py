@@ -116,7 +116,7 @@ def profile(request):
 def create_dog(request):
     if 'user_id' in request.session:
         if request.method == 'POST':
-            Dog.objects.create( owner=User.objects.get(id=request.session['user_id']), name=request.POST['dog_name'], breed=request.POST['breed'], gender=request.POST['gender'])
+            Dog.objects.create( owner=User.objects.get(id=request.session['user_id']), name=request.POST['dog_name'], breed=request.POST['breed'], gender=request.POST['gender'], image=request.FILES['image'])
             return redirect('/users/profile')
         return render(request, 'new_dog.html')
     return redirect('/')

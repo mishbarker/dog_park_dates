@@ -61,7 +61,8 @@ def show_one(request, id):
         context = {
             'dog': Dog.objects.get(owner=User.objects.get(id=creator_id)),
             'logged_user': User.objects.get(id=request.session['user_id']),
-            'viewed_playdate': Playdate.objects.get(id=id)
+            'viewed_playdate': Playdate.objects.get(id=id),
+            'users_joined': playdate.users_who_joined.all()
         }
     return render(request, 'show_one.html', context)
 
@@ -73,7 +74,7 @@ def edit_playdate(request, id):
         context = {
             'dog': Dog.objects.get(owner=User.objects.get(id=request.session['user_id'])),
             'edit_playdate': playdate,
-            'logged_user': User.objects.get(id=request.session['user_id'])
+            'logged_user': User.objects.get(id=request.session['user_id']),
         }
         if request.method == "POST":
             errors = Playdate.objects.validate_playdate(request.POST)

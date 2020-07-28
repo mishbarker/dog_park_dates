@@ -5,7 +5,7 @@
 {% block content %}
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">Hello {{user.first_name}}!</h1>
+            <h1 class="display-4">Hello {{logged_user.first_name}}!</h1>
         <table class="table">
             <h3 class="display-5">Your Playdates:</h3>
             <tr>
@@ -15,20 +15,50 @@
                 <th scope="col">Time:</th>
                 <th scope="col">Actions:</th>
             </tr>
-            {% for playdate in all_playdates %}
-                {% if request.session.user_id == playdate.creator.id %}
-                <tr>
-                    <td scope="col"><a href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
-                    <td scope="col">{{playdate.address}}</td>
-                    <td scope="col">{{playdate.date}}</td>
-                    <td scope="col">{{playdate.time}}</td>
-                {% if request.session.user_id == playdate.creator.id %}
-                    <td scope="col"><a href="/playdates/delete/{{playdate.id}}" class="btn btn-primary" role="button" aria-pressed="true">Remove</a></td>
-                    <td scope="col"><a href="/playdates/edit/{{playdate.id}}" class="btn btn-primary" role="button" aria-pressed="true">Edit</a></td>
-                {% endif %}
-                </tr>
-                {% endif %}
+            {% for playdate in logged_user.created_playdate.all %}
+            <tr>
+                <td scope="col"><a href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
+                <td scope="col">{{playdate.address}}</td>
+                <td scope="col">{{playdate.date}}</td>
+                <td scope="col">{{playdate.time}}</td>
+                <td scope="col"><span><a href="/playdates/edit/{{playdate.id}}">Edit</a> | <a href="/playdates/delete/{{playdate.id}}">Remove</a></span></td>
+            </tr>
             {% endfor %}
+
+            {%for playdate in logged_user.joined_playdates.all reversed%}
+            <tr>
+                <td scope="col"><a href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
+                <td scope="col">{{playdate.address}}</td>
+                <td scope="col">{{playdate.date}}</td>
+                <td scope="col">{{playdate.time}}</td>
+                <td scope="col"><a href="/playdates/unjoin/{{playdate.id}}">Unjoin</a></td>
+            </tr>
+            {%endfor%}
+        </table>
+        {% if logged_user.created_playdate.count == 0 %}
+        <h4>You currently don't have any trips.</h4>
+        {% endif %}
+        <br>
+        <table class="table">
+            <h3 class="display-5">Your Pals' Playdates:</h3>
+            <tr>
+                <th scope="col">Park Name:</th>
+                <th scope="col">Address:</th>
+                <th scope="col">Date:</th>
+                <th scope="col">Time:</th>
+                <th scope="col">Want to join?</th>
+            </tr>
+            {% for playdate in all_playdates %}
+            {%if logged_user.id != playdate.creator.id and logged_user not in playdate.users_who_joined.all%}
+            <tr>
+                <td scope="col"><a href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
+                <td scope="col">{{playdate.address}}</td>
+                <td scope="col">{{playdate.date}}</td>
+                <td scope="col">{{playdate.time}}</td>
+                <td scope="col"><a href="/playdates/join/{{playdate.id}}">Join</a></td>
+            </tr>
+            {%endif%}
+            {% endfor %}            
         </table>
         <a href="/playdates/new" class="btn btn-primary" role="button" aria-pressed="true">Create a new playdate!</a>
     </div>

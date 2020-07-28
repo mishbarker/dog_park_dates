@@ -29,7 +29,7 @@ def register(request):
         new_user = User.objects.create(first_name = request.POST['first_name'], last_name = request.POST['last_name'], email=request.POST['email'], password = hashed_password)
         request.session['user_id'] = new_user.id
         request.session['user_name'] = new_user.first_name
-        return redirect('/dashboard')
+        return redirect('/users/create_dog')
     else:
         return render(request, 'register.html')
 def logout(request):

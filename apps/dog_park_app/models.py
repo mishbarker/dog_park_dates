@@ -37,9 +37,9 @@ class Playdate(models.Model):
 
 class Dog(models.Model):
     owner = models.ForeignKey(User, related_name='has_dog', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, default="not provided")
-    breed = models.CharField(max_length=100, default="not provided")
-    gender = models.CharField(max_length=6, default="not provided")
+    name = models.CharField(max_length=100, default="not provided", blank=True, null=True)
+    breed = models.CharField(max_length=100, default="not provided", blank=True, null=True)
+    gender = models.CharField(max_length=6, default="not provided", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

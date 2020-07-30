@@ -9,10 +9,11 @@
         </div>
         <div class="wrapper container">
             <h3>{{viewed_playdate.park_name}}</h3>
+            <p>{{viewed_playdate.address}}</p>
             <p>Date: {{viewed_playdate.date|date:"SHORT_DATE_FORMAT"}}</p>
             <p>Comments: {{viewed_playdate.comments}}</p>
             <p>Created by: {{dog.name}} ({{dog.breed}}, {{dog.gender}})</p>
-            <img class="shadow p-3 mb-5 bg-transparent rounded" src="{{dog.image.url}}" alt="dog_image">
+            <img class="shadow p-3 mb-5 bg-transparent rounded-circle" src="{{dog.image.url}}" alt="dog_image">
             <p>Human:  {{viewed_playdate.creator.first_name}} {{viewed_playdate.creator.last_name}}</p>
         </div>
         <div class="wrapper container">

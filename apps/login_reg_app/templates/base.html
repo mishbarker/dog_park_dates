@@ -8,7 +8,29 @@
     <title>Welcome to Login and Registration</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/style.css"/>
+    
+    <script type='text/javascript' src='config.js'></script>
+    <script> 
+    var mykey = config.MY_KEY;
+    </script>
+    
+    <!-- <script>
+    "use strict";
+    let map;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+        center: {
+            lat: -34.397,
+            lng: 150.644
+        },
+        zoom: 8
+        });
+    }
+    </script> -->
+
 </head>
+
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
@@ -74,4 +96,7 @@
     </footer>
 
 </body>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=PUT KEY HERE&callback=initMap&libraries=places&v=weekly&q={{play_date.park_address}}" defer></script>
+
 </html>

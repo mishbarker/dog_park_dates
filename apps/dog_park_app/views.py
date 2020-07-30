@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import *
 from apps.login_reg_app.models import User
+import urllib.request
+import json
 
 def index(request):
     return render(request, 'index.html')
@@ -31,7 +33,7 @@ def new(request):
                 user = User.objects.get(id=request.session["user_id"])
                 Playdate.objects.create(
                     park_name = request.POST['park_name'],
-                    address = request.POST['address'],
+                    park_address = request.POST['park_address'],
                     date = request.POST['date'],
                     time = request.POST['time'],
                     comments = request.POST['comments'],
@@ -58,11 +60,16 @@ def show_one(request, id):
         dog = Dog.objects.get(owner=User.objects.get(id=creator_id))
         owner = dog.owner.first_name
         print(owner)
+        origin = playdate.park_address 
+        origin = origin.replace(' ','+')
+        destination = '{}'.format('8607 Castano Ln, El Cajon, CA')#get autolocation
+        destination = destination.replace(' ','+')
         context = {
             'dog': Dog.objects.get(owner=User.objects.get(id=creator_id)),
             'logged_user': User.objects.get(id=request.session['user_id']),
             'viewed_playdate': Playdate.objects.get(id=id),
-            'users_joined': playdate.users_who_joined.all()
+            'users_joined': playdate.users_who_joined.all(),
+            'origin': origin,
         }
     return render(request, 'show_one.html', context)
 
@@ -84,7 +91,7 @@ def edit_playdate(request, id):
                 return redirect(f'/playdates/edit/{id}')
             edit_playdate= Playdate.objects.get(id=id)
             edit_playdate.park_name = request.POST['park_name']
-            edit_playdate.address = request.POST['address']
+            edit_playdate.park_address = request.POST['park_address']
             edit_playdate.date = request.POST['date']
             edit_playdate.time = request.POST['time']
             edit_playdate.comments = request.POST['comments']

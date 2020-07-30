@@ -16,8 +16,6 @@ class PlaydateManager(models.Manager):
             errors['date'] = "Date field can't be blank."
         if postData['time'] =='':
             errors['time'] = "Time field can't be blank."
-        if postData['address'] =='':
-            errors['address'] = "Address field can't be blank."
         date = datetime.strptime(postData['date'], '%Y-%m-%d').date()
         if date <= date.today():
             errors['date'] = "Date must be in the future"
@@ -25,7 +23,7 @@ class PlaydateManager(models.Manager):
 
 class Playdate(models.Model):
     park_name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
+    park_address = models.CharField(max_length=255)
     date = models.DateField()
     time = models.TimeField()
     comments = models.TextField()

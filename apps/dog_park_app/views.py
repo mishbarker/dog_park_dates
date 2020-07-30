@@ -71,8 +71,6 @@ def show_one(request, id):
             'users_joined': playdate.users_who_joined.all(),
             'origin': origin,
         }
-       
-
     return render(request, 'show_one.html', context)
 
 def edit_playdate(request, id):

@@ -116,7 +116,7 @@ def profile(request):
     if 'user_id' in request.session:
         context ={
         'user': User.objects.get(id=request.session['user_id']),
-        'dog': Dog.objects.get(owner=User.objects.get(id=request.session['user_id']))
+        'dog': Dog.objects.filter(owner=User.objects.get(id=request.session['user_id']))
         }
         return render(request, 'profile.html', context)
     return redirect('/')
@@ -124,6 +124,11 @@ def profile(request):
 def create_dog(request):
     if 'user_id' in request.session:
         if request.method == 'POST':
+            errors = Dog.objects.validate_dog(request.POST)
+            if len(errors) > 0:
+                for key, value in errors.items():
+                    messages.error(request,value)
+                return redirect('/users/create_dog')
             Dog.objects.create( owner=User.objects.get(id=request.session['user_id']), name=request.POST['dog_name'], breed=request.POST['breed'], gender=request.POST['gender'], image=request.FILES['image'])
             return redirect('/users/profile')
         return render(request, 'new_dog.html')

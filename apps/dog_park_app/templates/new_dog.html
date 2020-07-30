@@ -8,13 +8,6 @@
         <h1 class="display-4">Register Your Dog:</h1>
     </div>
     <div class="wrapper container">
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
         <form action="/users/create_dog" method="POST" enctype="multipart/form-data">
             {%csrf_token%}
             {% if messages %}
@@ -35,7 +28,7 @@
             <div class="form-group">
                 <label class="mr-sm-2" for="inlineFormCustomSelect">Gender:</label>
                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="gender">
-                    <option selected>Choose...</option>
+                    <option value='' selected>Choose...</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>

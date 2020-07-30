@@ -10,10 +10,12 @@
     <div class="wrapper container">
         <div class="row mt-5">
             <div class="col-6">
+                {%for dog in user.has_dog.all%}
                 <img class="shadow p-3 mb-5 bg-transparent rounded-circle" src="{{dog.image.url}}" alt="dog_image">
                 <p>Name: {{dog.name}}</p>
                 <p>Breed: {{dog.breed}}</p>
                 <p>Gender: {{dog.gender}}</p>  
+                {%endfor%}
             </div>
             <div class="col-6">
                 <h2>Human:</h2>

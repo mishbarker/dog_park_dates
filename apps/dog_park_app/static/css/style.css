@@ -1,0 +1,8 @@
+.container-fluid{
+    background-image: url('../images/two_dogs.jpg');
+    background-size: 100%;
+}
+
+.jumbotron-fluid, .row{
+    background: linear-gradient(rgba(238, 232, 232, 0.5), rgba(238, 232, 232, 0.5));
+}

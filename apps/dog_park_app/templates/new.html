@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Hello {{logged_user.first_name}}! Create a playdate!</h1>
+        </div>
+        <div class="wrapper container">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action='/playdates/new' method='POST'>
+                <div class="form-group">
+                {% csrf_token %}
+                <label for="Inputpark_name1">Park Name:</label>
+                <input type="text" class="form-control" id="Inputpark_name1" name='park_name'>
+                </div>
+                <div class="form-group">
+                <label for="Inputaddress">Address:</label>
+                <input type="address" class="form-control" id="Inputaddress" name='address'>
+                </div>
+                <div class="form-group">
+                <label for="InputDate1">Date:</label>
+                <input type="date" class="form-control" id="InputStartDate" name='date'>
+                </div>
+                <div class="form-group">
+                <label for="InputTime">Time:</label>
+                <input type="time" class="form-control" id='InputTime' name='time'>
+                </div>
+                <div class="form-group">
+                <label for="InputComments">Comments:</label>
+                <input type="text" class="form-control" id='InputComments' name='comments'>
+                </div>
+                <button type="submit" class="btn btn-primary" >Submit</button>
+                <td scope="col"><a href="/dashboard" class="btn btn-primary" role="button" aria-pressed="true">Cancel</a></td>
+            </form>
+        </div>
+    </div>
+    
+{% endblock content %}
+</body>
+</html>

@@ -49,7 +49,7 @@ class Dog(models.Model):
     name = models.CharField(max_length=100, default="not provided", blank=True, null=True)
     breed = models.CharField(max_length=100, default="not provided", blank=True, null=True)
     gender = models.CharField(max_length=6, default="not provided", blank=True, null=True)
-    image = models.ImageField(upload_to='images/', default='images/placeholder.png', null=True, blank=True)
+    image = models.ImageField(upload_to='images/', default='placeholder.png', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = DogManager()

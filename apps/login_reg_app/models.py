@@ -36,7 +36,7 @@ class UserManager(models.Manager):
                 errors['login_email'] = "Email and password do not match"
         return errors
 
-    def validate_profile_user(self, postData, user_id):
+    def validate_edit_user(self, postData, user_id):
         errors = {}
         check = User.objects.filter(email=postData['email'])
         user = User.objects.get(id=user_id)

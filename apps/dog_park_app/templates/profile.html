@@ -8,19 +8,29 @@
         <h1 class="display-4">Your Profile</h1>
     </div>
     <div class="wrapper container">
-        <div class="row mt-5">
-            <div class="col-6">
+        <div class="row ml-5">
+            
+            <div class="col-6 my-5">
                 {%for dog in user.has_dog.all%}
+                <h2>{{dog.name}}</h2>
                 <img class="shadow p-3 mb-5 bg-transparent rounded-circle" src="{{dog.image.url}}" alt="dog_image">
-                <p>Name: {{dog.name}}</p>
                 <p>Breed: {{dog.breed}}</p>
-                <p>Gender: {{dog.gender}}</p>  
+                <p>Gender: {{dog.gender}}</p>
+                <div class="mb-4">
+                    <button class="btn btn-success"><a class="text-white" href="/users/{{dog.id}}/edit">Edit Dog</a></button>
+                    <button class="btn btn-danger"><a class="text-white" href="/users/{{dog.id}}/delete">Delete Dog</a></button>
+                </div>  
+                
+                <br>
                 {%endfor%}
             </div>
-            <div class="col-6">
+            
+            <div class="col-6 my-5">
                 <h2>Human:</h2>
                 <p>Name: {{user.first_name}} {{user.last_name}}</p>
-                <p>email: {{user.email}}</p>     
+                <p>email: {{user.email}}</p> 
+                <button class="btn btn-primary"><a class="text-white" href="/users/create_dog">Add Dog</a></button>
+                <button class="btn btn-success"><a class="text-white" href="/users/edit_user">Edit Human</a></button>
             </div>
         </div>   
                  

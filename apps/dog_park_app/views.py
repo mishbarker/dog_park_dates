@@ -68,32 +68,6 @@ def show_one(request, id):
             'origin': origin,
         }
     return render(request, 'show_one.html', context)
-
-def edit_playdate(request, playdate_id):
-    if "user_id" in request.session:
-        playdate = Playdate.objects.get(id=playdate_id)
-        playdate.date = str(playdate.date)
-        playdate.time = str(playdate.time)
-        context = {
-            'edit_playdate': playdate,
-            'logged_user': User.objects.get(id=request.session['user_id']),
-        }
-        if request.method == "POST":
-            errors = Playdate.objects.validate_playdate(request.POST)
-            if len(errors) > 0:
-                for key, value in errors.items():
-                    messages.error(request,value)
-                return redirect(f'/playdates/edit/{playdate_id}')
-            edit_playdate= Playdate.objects.get(id=playdate_id)
-            edit_playdate.park_name = request.POST['park_name']
-            edit_playdate.park_address = request.POST['park_address']
-            edit_playdate.date = request.POST['date']
-            edit_playdate.time = request.POST['time']
-            edit_playdate.comments = request.POST['comments']
-            edit_playdate.save()
-            return redirect(f'/playdates/edit/{playdate_id}')
-        return render(request, 'edit_playdate.html', context)
-    return redirect('/')
     
 def join(request, playdate_id):
     playdate_to_join = Playdate.objects.get(id=playdate_id)
@@ -181,5 +155,28 @@ def edit_user(request):
         return render(request, 'edit_user.html', context)
     return redirect('/')
 
-
-
+def edit_playdate(request, playdate_id):
+    if "user_id" in request.session:
+        playdate = Playdate.objects.get(id=playdate_id)
+        playdate.date = str(playdate.date)
+        playdate.time = str(playdate.time)
+        context = {
+            'edit_playdate': playdate,
+            'logged_user': User.objects.get(id=request.session['user_id']),
+        }
+        if request.method == "POST":
+            errors = Playdate.objects.validate_playdate(request.POST)
+            if len(errors) > 0:
+                for key, value in errors.items():
+                    messages.error(request,value)
+                return redirect(f'/playdates/{playdate_id}/edit')
+            edit_playdate= Playdate.objects.get(id=playdate_id)
+            edit_playdate.park_name = request.POST['park_name']
+            edit_playdate.park_address = request.POST['park_address']
+            edit_playdate.date = request.POST['date']
+            edit_playdate.time = request.POST['time']
+            edit_playdate.comments = request.POST['comments']
+            edit_playdate.save()
+            return redirect(f'/playdates/{playdate_id}')
+        return render(request, 'edit_playdate.html', context)
+    return redirect('/')

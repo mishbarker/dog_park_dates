@@ -21,6 +21,17 @@ class PlaydateManager(models.Manager):
             errors['date'] = "Date must be in the future"
         return errors
 
+class DogManager(models.Manager):
+    def validate_dog(self, postData):
+        errors = {}
+        if len(postData['dog_name']) < 2:
+            errors['dog_name'] = "Dog's name must be at least 2 characters."    
+        if len(postData['breed']) < 3:
+            errors['breed'] = "Breed must be at least 3 characters"
+        if postData['gender'] =='':
+            errors['gender'] = "Please select gender"
+        return errors
+
 class Playdate(models.Model):
     park_name = models.CharField(max_length=255)
     park_address = models.CharField(max_length=255)
@@ -38,7 +49,8 @@ class Dog(models.Model):
     name = models.CharField(max_length=100, default="not provided", blank=True, null=True)
     breed = models.CharField(max_length=100, default="not provided", blank=True, null=True)
     gender = models.CharField(max_length=6, default="not provided", blank=True, null=True)
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    image = models.ImageField(upload_to='images/', default='placeholder.png', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = DogManager()
 

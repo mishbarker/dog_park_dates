@@ -5,7 +5,7 @@
 {% block content %}
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">Create a playdate!</h1>
+            <h1 class="display-4 lead">Create a playdate!</h1>
             <div class="wrapper container row">
                 <div class="col-6">
                 {% if messages %}
@@ -18,26 +18,26 @@
                 <form action='/playdates/new' method='POST'>
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="Inputpark_name1">Park Name:</label>
-                        <input type="text" class="form-control" id="Inputpark_name1" name='park_name' placeholder='Verified dog park name here'>
+                        <label for="Inputpark_name1" class="lead">Park Name:</label>
+                        <input type="text" class="form-control" id="Inputpark_name1" name='park_name' placeholder='Park Name'>
                     </div>
                     <div class="form-group">
-                        <label for="Inputpark_name1">Park Address:</label>
-                        <input type="text" class="form-control" id="Inputpark_name1" name='park_address'>
+                        <label for="Inputpark_name1" class="lead">Park Address:</label>
+                        <input type="text" class="form-control" id="Inputpark_name1" name='park_address' placeholder='Park Address from Google Map'>
                     </div>
                     <div class="form-group">
-                        <label for="InputDate1">Date:</label>
+                        <label for="InputDate1" class="lead">Date:</label>
                         <input type="date" class="form-control" id="InputStartDate" name='date'>
                     </div>
                     <div class="form-group">
-                        <label for="InputTime">Time:</label>
+                        <label for="InputTime" class="lead">Time:</label>
                         <input type="time" class="form-control" id='InputTime' name='time'>
                     </div>
                     <div class="form-group">
-                        <label for="InputComments">Comments:</label>
-                        <input type="text" class="form-control" id='InputComments' name='comments'>
+                        <label for="InputComments" class="lead">Comments:</label>
+                        <input type="text" class="form-control" id='InputComments' name='comments' placeholder='Anything Helpful'>
                     </div>
-                    <button type="submit" class="btn btn-primary" >Submit</button>
+                    <button type="submit" class="btn btn-primary mr-3" class="lead">Submit</button>
                     <td scope="col"><a href="/dashboard" class="btn btn-primary" role="button" aria-pressed="true">Cancel</a></td>
                 </form>
                 </div>
@@ -46,8 +46,8 @@
 function initMap() 
 {
     var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 32.7767, lng: -96.7970},
-    zoom: 8
+    center: {lat: 41.2565, lng: -95.9345},
+    zoom: 3
     });
 
      // Try HTML5 geolocation.
@@ -164,9 +164,9 @@ function initMap()
     
 }
 </script>
-                    <h6>Verify dog park name and address here:</h6>
+                    <h1 class="display-5 lead font-weight-bold">Look up dog park name and address here:</h1>
                     <div class="pac-card" id="pac-card">
-                        <div id="title"> Autocomplete search</div>
+                        <div id="title" class= text-color-dark> Autocomplete search</div>
 
                         <div id="type-selector" class="pac-controls">
                         <input type="radio" name="type" id="changetype-all" checked="checked">
@@ -193,8 +193,8 @@ function initMap()
                     <div id="map"></div>
                     <div id="infowindow-content">
                     <img src="" width="16" height="16" id="place-icon">
-                    <span id="place-name"  class="title"></span><br>
-                    <span id="place-address"></span>
+                    <span id="place-name"  class="title text-color-dark"></span><br>
+                    <span id="place-address" class= text-color-dark></span>
                     </div>
                 </div>
             </div>

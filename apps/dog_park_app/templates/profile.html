@@ -1,29 +1,30 @@
-<!DOCTYPE html>
+
 {% extends "base.html" %}
 {% load static %}
 
 {% block content %}
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid text-center">
     <div class="container">
-        <h1 class="display-4">Your Profile</h1>
+        
     </div>
     <div class="wrapper container">
         <div class="row mt-5">
             <div class="col-6">
-                <img class="shadow p-3 mb-5 bg-transparent rounded" src="{{dog.image.url}}" alt="dog_image">
-                <p>Name: {{dog.name}}</p>
-                <p>Breed: {{dog.breed}}</p>
-                <p>Gender: {{dog.gender}}</p>  
+                <h1 class="display-4 lead">Your Profile</h1>
+                <img class="shadow p-3 bg-transparent rounded" src="{{dog.image.url}}" alt="dog_image">
+                
             </div>
             <div class="col-6">
-                <h2>Human:</h2>
-                <p>Name: {{user.first_name}} {{user.last_name}}</p>
-                <p>email: {{user.email}}</p>     
+                <h1 class="display-4 lead">Dog</h1>
+                <h1 class="lead display-5 lead font-weight-normal">Name: {{dog.name}}</h1>
+                <h2 class="lead font-weight-normal">Breed: {{dog.breed}}</h2>
+                <h2 class="lead font-weight-normal">Gender: {{dog.gender}}</h2>  
+                <h1 class="display-4 lead">Human</h1>
+                <h2 class="lead font-weight-normal">Name: {{user.first_name}} {{user.last_name}}</h2>
+                <h2 class="lead font-weight-normal">email: {{user.email}}</h2>     
             </div>
         </div>   
-                 
+        
     </div>   
 </div>
 {% endblock content %}
-</body>
-</html>

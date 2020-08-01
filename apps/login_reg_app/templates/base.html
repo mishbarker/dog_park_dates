@@ -10,23 +10,8 @@
     <link rel="stylesheet" href="/static/css/style.css"/>
     
     <script type='text/javascript' src='config.js'></script>
-    <script> 
+    <!-- <script> 
     var mykey = config.MY_KEY;
-    </script>
-    
-    <!-- <script>
-    "use strict";
-    let map;
-
-    function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-        center: {
-            lat: -34.397,
-            lng: 150.644
-        },
-        zoom: 8
-        });
-    }
     </script> -->
 
 </head>
@@ -50,6 +35,9 @@
                         <a class="nav-link" href="/signin/login">Login</a>
                     </li>
                     {%else%}
+                    <li class="nav-item"> 
+                        <a class="nav-link" href="/users/profile">Welcome, {{logged_user.first_name}}!</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/dashboard">Dashboard</a>
                     </li>
@@ -67,13 +55,12 @@
     </nav>
     {% block styles %}
     {% endblock %}
-    <div class="container-fluid bg-light pt-5 pb-2">
+    <div class="container-fluid pt-5 pb-2">
         <div class="wrapper container">
             <div class="jumbotron jumbotron-fluid text-center">
                 <div class="container">
-                    <h1 class="display-4">Dog Park Pals</h1>
-                    <p class="lead">Find other humans and dogs in your area, whether on vacation or in your neighborhood! Dog Park Pals is a safe place where dogs can meet other dogs and humans can connect to find new exciting places for their dogs.
-                    </p>
+                    <h1 class="display-4 font-weight-normal">Dog Park Pals</h1>
+                    <p class="lead font-weight-normal">Find other humans and dogs in your area, whether on vacation or in your neighborhood!</p>
                 </div>
             </div>
 
@@ -97,6 +84,6 @@
 
 </body>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=PUT KEY HERE&callback=initMap&libraries=places&v=weekly&q={{play_date.park_address}}" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdWr72svHjyGKDrNxwFuJ1W-3g920PUOo&callback=initMap&libraries=places&v=weekly&q={{play_date.park_address}}" defer></script>
 
 </html>

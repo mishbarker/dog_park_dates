@@ -5,19 +5,19 @@
 {% block content %}
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">Hello {{logged_user.first_name}}! Let's edit your playdate!</h1>
+            <h1 class="display-4">Let's edit your playdate!</h1>
         </div>
         <div class="wrapper container row">
-            {% if messages %}
-                <ul class="messages">
+            <form action='/playdates/{{edit_playdate.id}}/edit' method="POST" class="col-6">
+                {% csrf_token %}
+                {% if messages %}
+                <ul class = "list-unstyled lead">
                     {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        <li class = "text-light bg-danger text-center">{{ message }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
-            <form action='/playdates/{{edit_playdate.id}}/edit' method="POST" class="col-6">
                 <div class="form-group">
-                {% csrf_token %}
                     <label for="InputPark1">Park Name:</label>
                     <input type="text" class="form-control" id="InputPark1" name='park_name' aria-describedby="parkHelp" value='{{edit_playdate.park_name}}'>
                 </div>
@@ -37,15 +37,15 @@
                     <label for="Inputcomment">Comment:</label>
                     <input type="text" class="form-control" id='InputComment' name='comments' value='{{edit_playdate.comments}}'>
                 </div>
-                <button type="submit" class="btn btn-success" >Submit</button>
-                <td scope="col"><a href="/dashboard" class="btn btn-secondary" role="button" aria-pressed="true">Cancel</a></td>
+                <button type="submit" class="btn btn-success mr-2" >Submit</button>
+                <td scope="col"><a href="/dashboard" class="btn btn-warning" role="button" aria-pressed="true">Cancel</a></td>
             </form>
             <script>             
                 function initMap() 
                 {
                     var map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: 32.7767, lng: -96.7970},
-                    zoom: 8
+                        center: {lat: 41.2565, lng: -95.9345},
+                        zoom: 3
                     });
                 
                      // Try HTML5 geolocation.

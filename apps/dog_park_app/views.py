@@ -43,9 +43,6 @@ def new(request):
                 return redirect('/dashboard')
         return render(request, 'new.html', context)            
     return redirect('/')
-        
-
-    
 
 def delete_playdate(request, id):
     playdate = Playdate.objects.get(id=id)
@@ -85,7 +82,8 @@ def profile(request):
     if 'user_id' in request.session:
         context ={
         'user': User.objects.get(id=request.session['user_id']),
-        'dog': Dog.objects.filter(owner=User.objects.get(id=request.session['user_id']))
+        'dog': Dog.objects.filter(owner=User.objects.get(id=request.session['user_id'])),
+        'logged_user': User.objects.get(id=request.session['user_id']),
         }
         return render(request, 'profile.html', context)
     return redirect('/')
@@ -170,13 +168,14 @@ def edit_playdate(request, playdate_id):
                 for key, value in errors.items():
                     messages.error(request,value)
                 return redirect(f'/playdates/{playdate_id}/edit')
-            edit_playdate= Playdate.objects.get(id=playdate_id)
-            edit_playdate.park_name = request.POST['park_name']
-            edit_playdate.park_address = request.POST['park_address']
-            edit_playdate.date = request.POST['date']
-            edit_playdate.time = request.POST['time']
-            edit_playdate.comments = request.POST['comments']
-            edit_playdate.save()
+            else:
+                edit_playdate = Playdate.objects.get(id=playdate_id)
+                edit_playdate.park_name = request.POST['park_name']
+                edit_playdate.park_address = request.POST['park_address']
+                edit_playdate.date = request.POST['date']
+                edit_playdate.time = request.POST['time']
+                edit_playdate.comments = request.POST['comments']
+                edit_playdate.save()
             return redirect(f'/playdates/{playdate_id}')
         return render(request, 'edit_playdate.html', context)
     return redirect('/')

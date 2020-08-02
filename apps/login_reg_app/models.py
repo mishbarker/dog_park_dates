@@ -11,9 +11,9 @@ class UserManager(models.Manager):
         errors = {}
         check = User.objects.filter(email=postData['email'])
         if len(postData['first_name']) < 2 or not postData['first_name'].isalpha():
-            errors['first_name'] = "First name must be at least 2 characters and letters only"
+            errors['first_name'] = "First name must be at least 2 characters and letters only."
         if len(postData['last_name']) < 2 or not postData['last_name'].isalpha():
-            errors['last_name'] = "Last name must be at least 2 characters and letters only"
+            errors['last_name'] = "Last name must be at least 2 characters and letters only."
         if len(postData['password']) < 8:
             errors['password'] = "Your password must be at least 8 characters."
         elif postData['password'] != postData['conf_password']:
@@ -23,17 +23,17 @@ class UserManager(models.Manager):
         elif not EMAIL_REGEX.match(postData['email']):         
             errors['email'] = "Invalid email address!"
         elif check:
-            errors['email'] = 'Email address is already registered'
+            errors['email'] = 'Email address is already registered.'
         return errors
     
     def validate_login(self, postData):
         errors = {}
         check_user = User.objects.filter(email=postData['email'])
         if not check_user:
-            errors['login_email'] = "Email has not been registered"
+            errors['login_email'] = "Email has not been registered."
         else:
             if not bcrypt.checkpw(postData['password'].encode(), check_user[0].password.encode()): 
-                errors['login_email'] = "Email and password do not match"
+                errors['login_email'] = "Email and password do not match."
         return errors
 
     def validate_edit_user(self, postData, user_id):
@@ -41,19 +41,19 @@ class UserManager(models.Manager):
         check = User.objects.filter(email=postData['email'])
         user = User.objects.get(id=user_id)
         if len(postData['email']) < 1:
-            errors['email'] = "Email field can't be blank"
+            errors['email'] = "Email field can't be blank."
         elif not EMAIL_REGEX.match(postData['email']):
-            errors['email'] = "Email must be valid"
+            errors['email'] = "Email must be valid."
         elif check and postData['email'] != user.email:
-            errors['email'] = "Email address already registered"
+            errors['email'] = "Email address already registered."
         if len(postData['first_name']) < 2 or not postData['first_name'].isalpha():
-            errors['first_name'] = "FIrst name must be at least 2 characters and letters only"
+            errors['first_name'] = "First name must be at least 2 characters and letters only."
         if len(postData['last_name']) < 2 or not postData['last_name'].isalpha():
-            errors['last_name'] = "Last name must be at least 2 characters and letters only"
+            errors['last_name'] = "Last name must be at least 2 characters and letters only."
         if len(postData['password']) < 8:
             errors['password'] = "Password must be at least 8 characters"
         elif postData['password'] != postData['conf_password']:
-            errors['conf_password'] = "Your password and Confirm password must match"
+            errors['conf_password'] = "Your Password and Confirm Password must match."
         return errors
         
 class User(models.Model):

@@ -10,15 +10,23 @@ class PlaydateManager(models.Manager):
         errors = {}
         if len(postData['park_name']) < 3:
             errors['park_name'] = "Park name must be at least 3 characters."
+        if len(postData['park_address']) < 10:
+            errors['park_address'] = "Park address must be at least 10 characters."
         if len(postData['comments']) < 3:
             errors['comments'] = "Comments must be at least 3 characters."      
-        if postData['date'] =='':
+        # if postData['date'] =='':
+        if len(postData['date']) < 10:
             errors['date'] = "Date field can't be blank."
         if postData['time'] =='':
             errors['time'] = "Time field can't be blank."
         date = datetime.strptime(postData['date'], '%Y-%m-%d').date()
+        # date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
         if date <= date.today():
-            errors['date'] = "Date must be in the future"
+            errors['date'] = "Date must be in the future."
+        # now = datetime.now()
+        # time = now.strftime(postData['time'], '%-I:%M').time()
+        # if time <= now:
+        #     errors['time'] = "Time must be in the future."
         return errors
 
 class DogManager(models.Manager):
@@ -27,9 +35,9 @@ class DogManager(models.Manager):
         if len(postData['dog_name']) < 2:
             errors['dog_name'] = "Dog's name must be at least 2 characters."    
         if len(postData['breed']) < 3:
-            errors['breed'] = "Breed must be at least 3 characters"
+            errors['breed'] = "Breed must be at least 3 characters."
         if postData['gender'] =='':
-            errors['gender'] = "Please select gender"
+            errors['gender'] = "Please select gender."
         return errors
 
 class Playdate(models.Model):

@@ -1,53 +1,35 @@
-
 {% extends "base.html" %}
 {% load static %}
 
 {% block content %}
 <div class="jumbotron jumbotron-fluid text-center">
-    <div class="container">
-        
+    <h1 class="display-4 lead">Your Profile</h1>
+    <div class="wrapper container row">
+        <div class="col-6">
+            <h1 class="display-4 lead">Human</h1>
+            <h2 class="lead font-weight-normal">Name: {{user.first_name}} {{user.last_name}}</h2>
+            <br>
+            <h2 class="lead font-weight-normal">email: {{user.email}}</h2>
+            <br>
+            <button class="btn btn-primary mt-2 mr-2"><a class="text-white" href="/users/create_dog">Add Dog</a></button>
+            <button class="btn btn-success mt-2"><a class="text-white" href="/users/edit_user">Edit Human</a></button>
+        </div>
+
+        <div class="col-6">
+            {%for dog in user.has_dog.all%}
+            <h1 class="display-4 lead">Dog</h1>
+            <h1 class="lead display-5 lead font-weight-normal">Name: {{dog.name}}</h1>
+            <img class="shadow p-3 mb-2 bg-transparent rounded-circle" src="{{dog.image.url}}" alt="dog_image">
+            <h2 class="lead font-weight-normal">Breed: {{dog.breed}}</h2>
+            <h2 class="lead font-weight-normal">Gender: {{dog.gender}}</h2>
+            <div class="mb-4">
+                <button class="btn btn-success mt-2 mr-2"><a class="text-white" href="/users/{{dog.id}}/edit">Edit
+                        Dog</a></button>
+                <button class="btn btn-danger mt-2"><a class="text-white" href="/users/{{dog.id}}/delete">Delete
+                        Dog</a></button>
+            </div>
+            {%endfor%}
+        </div>
     </div>
-    <div class="wrapper container">
-        <div class="row mt-5">
-            <div class="col-6">
-                <h1 class="display-4 lead">Your Profile</h1>
-                <img class="shadow p-3 bg-transparent rounded" src="{{dog.image.url}}" alt="dog_image">
-                
-            </div>
-            <div class="col-6">
-                <h1 class="display-4 lead">Dog</h1>
-                <h1 class="lead display-5 lead font-weight-normal">Name: {{dog.name}}</h1>
-                <h2 class="lead font-weight-normal">Breed: {{dog.breed}}</h2>
-                <h2 class="lead font-weight-normal">Gender: {{dog.gender}}</h2>  
-                <h1 class="display-4 lead">Human</h1>
-                <h2 class="lead font-weight-normal">Name: {{user.first_name}} {{user.last_name}}</h2>
-                <h2 class="lead font-weight-normal">email: {{user.email}}</h2>     
-            </div>
-            
-            <div class="col-6 my-5">
-                {%for dog in user.has_dog.all%}
-                <h2>{{dog.name}}</h2>
-                <img class="shadow p-3 mb-5 bg-transparent rounded-circle" src="{{dog.image.url}}" alt="dog_image">
-                <p>Breed: {{dog.breed}}</p>
-                <p>Gender: {{dog.gender}}</p>
-                <div class="mb-4">
-                    <button class="btn btn-success"><a class="text-white" href="/users/{{dog.id}}/edit">Edit Dog</a></button>
-                    <button class="btn btn-danger"><a class="text-white" href="/users/{{dog.id}}/delete">Delete Dog</a></button>
-                </div>  
-                
-                <br>
-                {%endfor%}
-            </div>
-            
-            <div class="col-6 my-5">
-                <h2>Human:</h2>
-                <p>Name: {{user.first_name}} {{user.last_name}}</p>
-                <p>email: {{user.email}}</p> 
-                <button class="btn btn-primary"><a class="text-white" href="/users/create_dog">Add Dog</a></button>
-                <button class="btn btn-success"><a class="text-white" href="/users/edit_user">Edit Human</a></button>
-            </div>
-        </div>   
-        
-    </div>   
 </div>
 {% endblock content %}

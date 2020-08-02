@@ -9,14 +9,23 @@
     </div>
     <br>
     <div class="wrapper container row">
-        <div class="col-6">
+        <div class="col-6 mb-5">
             <h3>{{viewed_playdate.park_name}}</h3>
             <p id='park_address' class="lead">{{viewed_playdate.park_address}}</p>
             <p class="lead">Date: {{viewed_playdate.date|date:"SHORT_DATE_FORMAT"}}</p>
             <p class="lead">Comments: {{viewed_playdate.comments}}</p>
             <h3>Created by: {{dog.name}}</h3> <p class = "lead">({{dog.breed}}, {{dog.gender}})</p>
+            <img class="shadow p-3 mb-5 bg-transparent rounded" src="{{dog.image.url}}" alt="dog_image">            
+
+            {%for dog in viewed_playdate.creator.has_dog.all%}
+            <p>Created by: {{dog.name}} ({{dog.breed}}, {{dog.gender}})</p>
             <img class="shadow p-3 mb-5 bg-transparent rounded" src="{{dog.image.url}}" alt="dog_image">
-            <h3>Human: {{viewed_playdate.creator.first_name}} {{viewed_playdate.creator.last_name}}</h3>
+            {%endfor%}
+            
+            <p>Human: {{viewed_playdate.creator.first_name}} {{viewed_playdate.creator.last_name}}</p>
+            {%if viewed_playdate.creator.id == logged_user.id%}
+            <button class="btn btn-success"><a class="text-white" href="/playdates/{{viewed_playdate.id}}/edit">Edit Playdate</a></button>
+            {%endif%}
         </div>
         <div class="col-6 googleMap" id="map"></div>
         <script>
@@ -110,6 +119,7 @@
         {% for user in users_joined %}
         {%for dog in user.has_dog.all%}
         <p class="lead">{{dog.name}}: {{dog.breed}}, {{dog.gender}}</p>
+        <img src="{{dog.image.url}}" alt="">
         {%endfor%}
         <h3>Human: {{user.first_name}} {{user.last_name}}</h3><br>
         {%endfor%}

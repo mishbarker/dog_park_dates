@@ -3,17 +3,17 @@ import bcrypt
 from django.contrib import messages
 from .models import *
 
-def signin(request):
+def login(request):
     if request.method == "POST":
         errors = User.objects.validate_login(request.POST)
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect('/signin')
+            return redirect('/signin/login')
         else:
             user = User.objects.get(email = request.POST['email'])
             request.session['user_id'] = user.id
-            request.session['user_name'] = user.name
+            request.session['user_name'] = user.first_name
             return redirect('/dashboard')
     else:
         return render(request, 'signin.html')
@@ -24,14 +24,15 @@ def register(request):
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect('/register')
+            return redirect('/signin/register')
         hashed_password = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
-        new_user = User.objects.create(first_name = request.POST['first_name'], last_name = request.POST['last_name'], email=request.POST['email'], password = hashed_password, user_level = 1)
+        new_user = User.objects.create(first_name = request.POST['first_name'], last_name = request.POST['last_name'], email=request.POST['email'], password = hashed_password)
         request.session['user_id'] = new_user.id
         request.session['user_name'] = new_user.first_name
-        return redirect('/dashboard')
+        return redirect('/users/create_dog')
     else:
         return render(request, 'register.html')
+        
 def logout(request):
     request.session.flush()
     return redirect('/')

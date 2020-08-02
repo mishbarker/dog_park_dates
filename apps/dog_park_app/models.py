@@ -14,19 +14,14 @@ class PlaydateManager(models.Manager):
             errors['park_address'] = "Park address must be at least 10 characters."
         if len(postData['comments']) < 3:
             errors['comments'] = "Comments must be at least 3 characters."      
-        # if postData['date'] =='':
-        if len(postData['date']) < 10:
+        if postData['date'] =='':
             errors['date'] = "Date field can't be blank."
         if postData['time'] =='':
             errors['time'] = "Time field can't be blank."
-        date = datetime.strptime(postData['date'], '%Y-%m-%d').date()
-        # date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
-        if date <= date.today():
-            errors['date'] = "Date must be in the future."
-        # now = datetime.now()
-        # time = now.strftime(postData['time'], '%-I:%M').time()
-        # if time <= now:
-        #     errors['time'] = "Time must be in the future."
+        if postData['date']:
+            date = datetime.strptime(postData['date'], '%Y-%m-%d').date()
+            if date <= date.today():
+                errors['date'] = "Date must be in the future."
         return errors
 
 class DogManager(models.Manager):

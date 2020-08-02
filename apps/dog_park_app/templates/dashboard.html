@@ -19,7 +19,7 @@
                 <td scope="col"><a href="/playdates/{{playdate.id}}" class="btn btn-secondary btn-sm mr-2" role="button">View</a><a class="text-light font-weight-bold" href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
                 <td scope="col">{{playdate.park_address}}</td>
                 <td scope="col">{{playdate.date}}</td>
-                <td scope="col">{{playdate.time}}</td>
+                <td scope="col">{{playdate.time|time:"g: i A"}}</td>
                 <td scope="col"><span><a class="text-light font-weight-light font-weight-bold" href="/playdates/edit/{{playdate.id}}">Edit</a> | <a class="text-light font-weight-light font-weight-bold" href="/playdates/delete/{{playdate.id}}">Remove</a></span></td>
             </tr>
             {% endfor %}
@@ -29,7 +29,7 @@
                 <td scope="col"><a href="/playdates/{{playdate.id}}" class="btn btn-secondary btn-sm mr-2" role="button">View</a><a class="text-light font-weight-light font-weight-bold" href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
                 <td scope="col">{{playdate.park_address}}</td>
                 <td scope="col">{{playdate.date}}</td>
-                <td scope="col">{{playdate.time}}</td>
+                <td scope="col">{{playdate.time|time:"g: i A"}}</td>
                 <td scope="col"><a class="text-light font-weight-light font-weight-bold" href="/playdates/unjoin/{{playdate.id}}">Unjoin</a></td>
             </tr>
             {%endfor%}
@@ -53,7 +53,7 @@
                 <td scope="col"><a href="/playdates/{{playdate.id}}" class="btn btn-secondary btn-sm mr-2" role="button">View</a><a class="text-light font-weight-bold" href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
                 <td scope="col">{{playdate.park_address}}</td>
                 <td scope="col">{{playdate.date}}</td>
-                <td scope="col">{{playdate.time}}</td>
+                <td scope="col">{{playdate.time|time:"g: i A"}}</td>
                 <td scope="col"><a class="text-light font-weight-bold" href="/playdates/join/{{playdate.id}}">Join</a></td>
             </tr>
             {%endif%}

@@ -9,14 +9,14 @@
     </div>
     <div class="wrapper container">
         <form action="/users/create_dog" method="POST" enctype="multipart/form-data">
-            {%csrf_token%}
-            {% if messages %}
-            <ul class="messages text-danger">    
-                {% for message in messages %}    
-                    <li>{{ message }}</li>    
-                {% endfor %}
-            </ul>
-            {% endif %}
+            {% csrf_token %}
+                {% if messages %}
+                <ul class="list-unstyled lead">
+                    {% for message in messages %}
+                    <li class="text-light bg-danger text-center">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
             <div class="form-group">
                 <label for="">Dog's Name:</label>
                 <input type="text" class="form-control" name='dog_name'>

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
 {% load static %}
 
@@ -6,20 +5,30 @@
 
 
 <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">Hello {{logged_user.first_name}}! Read about this playdate!</h1>
+    <!-- <div class="container">
     </div>
+    <br> -->
     <div class="wrapper container row">
-        <div class="col-6">
+        <div class="col-6 mb-5">
             <h3>{{viewed_playdate.park_name}}</h3>
-            <p id='park_address'>{{viewed_playdate.park_address}}</p>
-            <p>Date: {{viewed_playdate.date|date:"SHORT_DATE_FORMAT"}}</p>
-            <p>Comments: {{viewed_playdate.comments}}</p>
-            <p>Created by: {{dog.name}} ({{dog.breed}}, {{dog.gender}})</p>
-            <img class="shadow p-3 mb-5 bg-transparent rounded" src="{{dog.image.url}}" alt="dog_image">
-            <p>Human: {{viewed_playdate.creator.first_name}} {{viewed_playdate.creator.last_name}}</p>
+            <p id='park_address' class="lead">{{viewed_playdate.park_address}}</p>
+            <p class="lead">Date: {{viewed_playdate.date|date:"SHORT_DATE_FORMAT"}}</p>
+            <p class="lead">Time: {{viewed_playdate.time|time:"g: i A"}}</p>
+            <p class="lead">Comments: {{viewed_playdate.comments}}</p>
+            <!-- <h3>Created by: {{dog.name}}</h3> <p class = "lead">({{dog.breed}}, {{dog.gender}})</p>
+            <img class="shadow p-3 mb-5 bg-transparent rounded" src="{{dog.image.url}}" alt="dog_image">             -->
+
+            {%for dog in viewed_playdate.creator.has_dog.all%}
+            <h1 class="lead">Created by: {{dog.name}} ({{dog.breed}}, {{dog.gender}})</h1>
+            <img class="shadow p-3 bg-transparent rounded" src="{{dog.image.url}}" alt="dog_image">
+            {%endfor%}
+            
+            <p class="lead">Human: {{viewed_playdate.creator.first_name}} {{viewed_playdate.creator.last_name}}</p>
+            {%if viewed_playdate.creator.id == logged_user.id%}
+            <button class="btn btn-success"><a class="text-white" href="/playdates/{{viewed_playdate.id}}/edit">Edit Playdate</a></button>
+            {%endif%}
         </div>
-        <div class="col-6" id="map"></div>
+        <div class="col-6 googleMap" id="map"></div>
         <script>
             var map, infoWindow;
             function initMap() {
@@ -43,7 +52,7 @@
 
 
                         infoWindow.setPosition(pos);
-                        infoWindow.setContent('Location found.');
+                        infoWindow.setContent('You are here.');
                         infoWindow.open(map);
                         map.setCenter(pos);
                         function codeAddress(start) {
@@ -105,19 +114,17 @@
     <div class="wrapper container">
         <h3>Pals who joined this playdate:</h3>
         {% if viewed_playdate.users_who_joined.count == 0 %}
-        <p>No one has joined this playdate yet.</p>
+        <p class="lead">No one has joined this playdate yet.</p>
         {% endif %}
 
         {% for user in users_joined %}
         {%for dog in user.has_dog.all%}
-        <p>{{dog.name}}: {{dog.breed}}, {{dog.gender}}</p>
+        <p class="lead">{{dog.name}}: {{dog.breed}}, {{dog.gender}}</p>
+        <img class="shadow p-3 bg-transparent rounded" src="{{dog.image.url}}" alt="">
         {%endfor%}
-        <p>Human: {{user.first_name}} {{user.last_name}}</p><br>
+        <h1 class="lead">Human: {{user.first_name}} {{user.last_name}}</h1>
         {%endfor%}
     </div>
 </div>
 
 {% endblock %}
-</body>
-
-</html>

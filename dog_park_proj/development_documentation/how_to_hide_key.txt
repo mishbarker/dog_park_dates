@@ -1,0 +1,16 @@
+How to hide API keys from github
+
+If you have already pushed commits with sensitive data, follow this guide to remove the sensitive info while retaining your commits: https://help.github.com/articles/remove-sensitive-data/
+
+In the terminal, create a config.js file and open it up: touch config.js atom config.js
+
+In the config file, enter your API keys in an object like so (naming them whatever you like, and putting the keys in as strings). You don't need any other code in this file: var config = { MY_KEY : '123456', SECRET_KEY : '56789', KEY_2 : '101010' }
+
+In your HTML file, add a script link to this file BELOW your jQuery script but ABOVE your own script file links:
+<script type='text/javascript' src='config.js'></script>
+<script type='text/javascript' src='script.js></script>
+
+In your javascript/jquery file (probably script.js), declare variables that point to your API keys in the config file like so. Note that the 'config' here refers to the object called 'config', NOT to the file config.js: var mykey = config.MY_KEY; var secretkey = config.SECRET_KEY;
+
+Be sure to replace every instance of the API keys with these new variables. 
+E.g. if you had: url: 'https//www.whatever.com/?query&sig=12345' Now you will have: url: 'https://www.whatever.com/?query&sig=' + mykey

@@ -4,10 +4,6 @@ from .models import *
 from apps.login_reg_app.models import User
 
 def index(request):
-<<<<<<< HEAD
-    pass
-=======
->>>>>>> 22c3781a40935d2ef0276fcc82a3b777c362c92b
     return render(request, 'index.html')
 
 def dashboard(request):
@@ -146,7 +142,3 @@ def create_dog(request):
 #     return redirect('/')
 
 
-<<<<<<< HEAD
-    # return render(request, 'index.html')
-=======
->>>>>>> 22c3781a40935d2ef0276fcc82a3b777c362c92b

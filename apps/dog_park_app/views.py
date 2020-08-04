@@ -90,6 +90,9 @@ def profile(request):
 
 def create_dog(request):
     if 'user_id' in request.session:
+        context={
+            'logged_user': User.objects.get(id=request.session['user_id'])
+        }
         if request.method == 'POST':
             errors = Dog.objects.validate_dog(request.POST)
             if len(errors) > 0:
@@ -98,7 +101,7 @@ def create_dog(request):
                 return redirect('/users/create_dog')
             Dog.objects.create( owner=User.objects.get(id=request.session['user_id']), name=request.POST['dog_name'], breed=request.POST['breed'], gender=request.POST['gender'], image=request.FILES['image'])
             return redirect('/users/profile')
-        return render(request, 'new_dog.html')
+        return render(request, 'new_dog.html', context)
     return redirect('/')
 
 def delete_dog(request, dog_id):
@@ -111,6 +114,7 @@ def edit_dog(request, dog_id):
         dog = Dog.objects.get(id=dog_id)
         context = {
             'dog': dog,
+            'logged_user': User.objects.get(id=request.session['user_id']),
         }
         if request.method == "POST":
             errors = Dog.objects.validate_dog(request.POST)
@@ -134,7 +138,8 @@ def edit_dog(request, dog_id):
 def edit_user(request):
     if "user_id" in request.session:
         context ={
-            'user': User.objects.get(id=request.session['user_id'])
+            'user': User.objects.get(id=request.session['user_id']),
+            'logged_user': User.objects.get(id=request.session['user_id']),
         }
         if request.method == 'POST':
             errors = User.objects.validate_edit_user(request.POST, request.session['user_id'])

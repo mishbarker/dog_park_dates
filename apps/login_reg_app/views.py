@@ -32,6 +32,7 @@ def register(request):
         return redirect('/users/create_dog')
     else:
         return render(request, 'register.html')
+        
 def logout(request):
     request.session.flush()
     return redirect('/')

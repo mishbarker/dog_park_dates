@@ -1,13 +1,12 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
 {% load static %}
 
 {% block content %}
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Hello {{logged_user.first_name}}!</h1>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
         <table class="table">
-            <h3 class="display-5">Your Playdates:</h3>
+            <h4 class="display-6 text-light pb-2">Your Playdates:</h4><a href="/playdates/new"
+                class="btn btn-success mb-3" role="button" aria-pressed="true">Create a new playdate!</a>
             <tr>
                 <th scope="col">Park Name:</th>
                 <th scope="col">Address:</th>
@@ -17,21 +16,29 @@
             </tr>
             {% for playdate in logged_user.created_playdate.all %}
             <tr>
-                <td scope="col"><a href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
-                <td scope="col">{{playdate.address}}</td>
+                <td scope="col"><a href="/playdates/{{playdate.id}}" class="btn btn-secondary btn-sm mr-2"
+                        role="button">View</a><a class="text-light font-weight-bold"
+                        href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
+                <td scope="col">{{playdate.park_address}}</td>
                 <td scope="col">{{playdate.date}}</td>
-                <td scope="col">{{playdate.time}}</td>
-                <td scope="col"><span><a href="/playdates/edit/{{playdate.id}}">Edit</a> | <a href="/playdates/delete/{{playdate.id}}">Remove</a></span></td>
+                <td scope="col">{{playdate.time|time:"g: i A"}}</td>
+                <td scope="col"><span><a class="text-light font-weight-light font-weight-bold"
+                            href="/playdates/edit/{{playdate.id}}">Edit</a> | <a
+                            class="text-light font-weight-light font-weight-bold"
+                            href="/playdates/delete/{{playdate.id}}">Remove</a></span></td>
             </tr>
             {% endfor %}
 
             {%for playdate in logged_user.joined_playdates.all reversed%}
             <tr>
-                <td scope="col"><a href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
-                <td scope="col">{{playdate.address}}</td>
+                <td scope="col"><a href="/playdates/{{playdate.id}}" class="btn btn-secondary btn-sm mr-2"
+                        role="button">View</a><a class="text-light font-weight-light font-weight-bold"
+                        href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
+                <td scope="col">{{playdate.park_address}}</td>
                 <td scope="col">{{playdate.date}}</td>
-                <td scope="col">{{playdate.time}}</td>
-                <td scope="col"><a href="/playdates/unjoin/{{playdate.id}}">Unjoin</a></td>
+                <td scope="col">{{playdate.time|time:"g: i A"}}</td>
+                <td scope="col"><a class="text-light font-weight-light font-weight-bold"
+                        href="/playdates/unjoin/{{playdate.id}}">Unjoin</a></td>
             </tr>
             {%endfor%}
         </table>
@@ -40,7 +47,7 @@
         {% endif %}
         <br>
         <table class="table">
-            <h3 class="display-5">Your Pals' Playdates:</h3>
+            <h3 class="display-5 text">Your Pals' Playdates:</h3>
             <tr>
                 <th scope="col">Park Name:</th>
                 <th scope="col">Address:</th>
@@ -51,18 +58,18 @@
             {% for playdate in all_playdates %}
             {%if logged_user.id != playdate.creator.id and logged_user not in playdate.users_who_joined.all%}
             <tr>
-                <td scope="col"><a href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
-                <td scope="col">{{playdate.address}}</td>
+                <td scope="col"><a href="/playdates/{{playdate.id}}" class="btn btn-secondary btn-sm mr-2"
+                        role="button">View</a><a class="text-light font-weight-bold"
+                        href="/playdates/{{playdate.id}}">{{playdate.park_name}}</a></td>
+                <td scope="col">{{playdate.park_address}}</td>
                 <td scope="col">{{playdate.date}}</td>
-                <td scope="col">{{playdate.time}}</td>
-                <td scope="col"><a href="/playdates/join/{{playdate.id}}">Join</a></td>
+                <td scope="col">{{playdate.time|time:"g: i A"}}</td>
+                <td scope="col"><a class="text-light font-weight-bold" href="/playdates/join/{{playdate.id}}">Join</a>
+                </td>
             </tr>
             {%endif%}
-            {% endfor %}            
+            {% endfor %}
         </table>
-        <a href="/playdates/new" class="btn btn-primary" role="button" aria-pressed="true">Create a new playdate!</a>
     </div>
-
-{% endblock content %}
-</body>
-</html>
+</div>
+    {% endblock content %}

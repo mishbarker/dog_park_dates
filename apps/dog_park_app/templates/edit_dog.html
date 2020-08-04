@@ -5,26 +5,26 @@
 {% block content %}
 <div class="jumbotron text-center jumbotron-fluid">
     <div class="wrapper container">
-        <form action="/users/create_dog" method="POST" enctype="multipart/form-data">
+        <form action="/users/{{dog.id}}/edit" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% if messages %}
-            <ul class="list-unstyled lead">
+            <ul class = "list-unstyled lead">
                 {% for message in messages %}
-                <li class="text-light bg-danger text-center">{{ message }}</li>
+                    <li class = "text-light bg-danger text-center">{{ message }}</li>
                 {% endfor %}
             </ul>
             {% endif %}
-            <h1 class="display-4 py-2">Register Your Dog</h1>
+            <h1 class="display-4 py-2">Edit Your Dog's Info</h1>
             <div class="col-md-11 form-group row">
                 <label for="" class="col-sm-2 col-form-label">Dog's Name:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='dog_name'>
+                    <input type="text" class="form-control" value="{{dog.name}}" name='dog_name'>
                 </div>
             </div>
             <div class="col-md-11 form-group row">
                 <label for="" class="col-sm-2 col-form-label">Breed:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='breed'>
+                    <input type="text" class="form-control" value="{{dog.breed}}" name='breed'>
                 </div>
             </div>
             <div class="col-md-11 form-group row">
@@ -38,13 +38,13 @@
                 </div>
             </div>
             <div class="col-md-12 form-group row">
-                <label class="col-sm-2 col-form-label" for="">Add Photo:</label>
-                <input type="file" name="image">
+                <label class="col-sm-2 col-form-label" for="">Add or Change Photo:</label>
+                <input type="file" value="{{dog.image.url}}" name="image">
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-success mr-2">Register</button>
-                    <button class="btn btn-primary"><a class="text-white" href="/users/profile">Cancel</a></button>
+                    <button type="submit" class="btn btn-warning text-white tm-2 mr-2">Submit</button>
+                    <button class="btn btn-primary tm-2"><a class="text-white" href="/users/profile">Cancel</a></button>
                 </div>
             </div>
         </form>

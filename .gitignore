@@ -1,7 +1,5 @@
-.apps/login_reg_app/migrations/
-.apps/dog_par_app/migrations/
+config.js
 
-<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -11,17 +9,6 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-=======
-Byte-compiled / optimized / DLL files
-pycache/
-*.py[cod]
-*$py.class
-
-C extensions
-*.so
-
-Distribution / packaging
->>>>>>> 2a16633b2bfc08ce1260ea2130cb2b4e07cfaf5e
 .Python
 build/
 develop-eggs/
@@ -41,7 +28,6 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-<<<<<<< HEAD
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
@@ -53,19 +39,6 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-=======
-PyInstaller
-Usually these files are written by a python script from a template
-before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-Unit test / coverage reports
->>>>>>> 2a16633b2bfc08ce1260ea2130cb2b4e07cfaf5e
 htmlcov/
 .tox/
 .nox/
@@ -80,25 +53,16 @@ coverage.xml
 .pytest_cache/
 cover/
 
-<<<<<<< HEAD
 # Translations
 *.mo
 *.pot
 
 # Django stuff:
-=======
-Translations
-*.mo
-*.pot
-
-Django stuff:
->>>>>>> 2a16633b2bfc08ce1260ea2130cb2b4e07cfaf5e
 *.log
 local_settings.py
-db.sqlite3
-db.sqlite3-journal
+#db.sqlite3
+#db.sqlite3-journal
 
-<<<<<<< HEAD
 # Flask stuff:
 instance/
 .webassets-cache
@@ -143,51 +107,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-=======
-Flask stuff:
-instance/
-.webassets-cache
-
-Scrapy stuff:
-.scrapy
-
-Sphinx documentation
-docs/_build/
-
-PyBuilder
-.pybuilder/
-target/
-
-Jupyter Notebook
-.ipynb_checkpoints
-
-IPython
-profile_default/
-ipython_config.py
-
-pyenv
-For a library or package, you might want to ignore these files since the code is
-intended to run in multiple environments; otherwise, check them in:
-.python-version
-pipenv
-According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-However, in case of collaboration, if having platform-specific dependencies or dependencies
-having no cross-platform support, pipenv may install dependencies that don't work, or not
-install all needed dependencies.
-#Pipfile.lock
-
-PEP 582; used by e.g. github.com/David-OConnor/pyflow
-pypackages/
-
-Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-SageMath parsed files
-*.sage.py
-
-Environments
->>>>>>> 2a16633b2bfc08ce1260ea2130cb2b4e07cfaf5e
 .env
 .venv
 env/
@@ -196,7 +115,6 @@ ENV/
 env.bak/
 venv.bak/
 
-<<<<<<< HEAD
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -208,24 +126,10 @@ venv.bak/
 /site
 
 # mypy
-=======
-Spyder project settings
-.spyderproject
-.spyproject
-
-Rope project settings
-.ropeproject
-
-mkdocs documentation
-/site
-
-mypy
->>>>>>> 2a16633b2bfc08ce1260ea2130cb2b4e07cfaf5e
 .mypy_cache/
 .dmypy.json
 dmypy.json
 
-<<<<<<< HEAD
 # Pyre type checker
 .pyre/
 
@@ -233,13 +137,4 @@ dmypy.json
 .pytype/
 
 # Cython debug symbols
-=======
-Pyre type checker
-.pyre/
-
-pytype static type analyzer
-.pytype/
-
-Cython debug symbols
->>>>>>> 2a16633b2bfc08ce1260ea2130cb2b4e07cfaf5e
 cython_debug/
